@@ -25,11 +25,6 @@ SimpleInterpreterREPLInputInterpreter >> arguments [
 ]
 
 { #category : #accessing }
-SimpleInterpreterREPLInputInterpreter >> commandClass [
-	^ self
-]
-
-{ #category : #accessing }
 SimpleInterpreterREPLInputInterpreter >> consolePrompt [
 	^ self interpretedLanguage , '> '
 ]
@@ -49,6 +44,16 @@ SimpleInterpreterREPLInputInterpreter >> execute [
 		limitedTo: self outputLimit.
 	result size < self outputLimit
 		ifFalse: [ result := result , ' ... (truncated) ...' ]
+]
+
+{ #category : #accessing }
+SimpleInterpreterREPLInputInterpreter >> getCommandForLine: line [
+	^ self
+]
+
+{ #category : #accessing }
+SimpleInterpreterREPLInputInterpreter >> getQuitCommand [
+	^ SimpleInterpreterREPLQuitCommand new
 ]
 
 { #category : #accessing }
@@ -103,11 +108,6 @@ SimpleInterpreterREPLInputInterpreter >> on: input [
 { #category : #accessing }
 SimpleInterpreterREPLInputInterpreter >> outputLimit [
 	^ 16384
-]
-
-{ #category : #accessing }
-SimpleInterpreterREPLInputInterpreter >> quitCommandClass [
-	^ SimpleInterpreterREPLQuitCommand 
 ]
 
 { #category : #accessing }
